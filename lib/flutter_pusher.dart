@@ -150,7 +150,7 @@ class FlutterPusher {
 
     if (message.isEvent) {
       var callback =
-          _eventCallbacks[message.event.channel + message.event.event];
+          _eventCallbacks[message.event.channel ?? '' + message.event.event];
       if (callback != null) {
         callback(jsonDecode(message.event.data));
       }
@@ -323,11 +323,11 @@ class PusherEventStreamMessage {
 
 @JsonSerializable()
 class Event {
-  final String channel;
+  final String? channel;
   final String event;
   final String data;
 
-  Event({required this.channel, required this.event, required this.data});
+  Event({this.channel, required this.event, required this.data});
 
   factory Event.fromJson(Map<String, dynamic> json) => _$EventFromJson(json);
 
