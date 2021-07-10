@@ -1,5 +1,6 @@
 package com.github.heywhy.flutter_pusher.listeners;
 
+import com.google.gson.Gson;
 import com.pusher.client.channel.PresenceChannelEventListener;
 import com.pusher.client.channel.User;
 
@@ -23,7 +24,7 @@ public class PresenceChannelListener extends EventChannelListener implements Pre
 
     @Override
     public void onUsersInformationReceived(String channelName, Set<User> users) {
-        this.onEvent(toPusherEvent(channelName, SUBSCRIPTION_SUCCESS_EVENT, null, users.toString()));
+        this.onEvent(toPusherEvent(channelName, SUBSCRIPTION_SUCCESS_EVENT, null, new Gson().toJson(users.toArray())));
     }
 
     @Override
