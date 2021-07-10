@@ -148,7 +148,7 @@ class FlutterPusher {
         message.event?.event != null) {
       var callback =
           _eventCallbacks[message.event!.channel! + message.event!.event!];
-      if (callback != null && message.event?.data != null) {
+      if (callback != null && message.event?.data?.isNotEmpty == true) {
         callback(jsonDecode(message.event!.data!));
       }
     } else if (message.isConnectionStateChange) {
